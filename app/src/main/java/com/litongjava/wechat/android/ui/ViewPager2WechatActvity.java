@@ -115,46 +115,36 @@ public class ViewPager2WechatActvity extends AppCompatActivity {
 
   @OnClick(R.id.bottom_weixin_imageView)
   public void bottom_weixin_imageView_OnClick(View view) {
-    int viewId = view.getId();
-    //设置状态
-    chageFragment(viewId);
+    chageFragment(0);
 
   }
 
   @OnClick(R.id.bottom_contact_list_imageView)
   public void bottom_contact_list_textView_OnClick(View view) {
-    int viewId = view.getId();
-    //设置状态
-    chageFragment(viewId);
+    chageFragment(1);
   }
 
   @OnClick(R.id.bottom_find_imageView)
   public void bottom_find_textView_OnClick(View view) {
-    int viewId = view.getId();
-    //设置状态
-    chageFragment(viewId);
+    chageFragment(2);
   }
 
   @OnClick(R.id.bottom_profile_imageView)
   public void bottom_profile_textView_OnClick(View view) {
-    int viewId = view.getId();
-    //设置状态
-    chageFragment(viewId);
+    chageFragment(3);
   }
 
 
-  private void chageFragment(int imageViewId) {
+  private void chageFragment(int index) {
+    //fragment
+    viewPager2.setCurrentItem(index);
+    //修改按钮状态
     List<ImageView> imageViews = getImageViews();
     for (int i = 0; i < imageViews.size(); i++) {
       ImageView imageView = imageViews.get(i);
-      int ivid = imageView.getId();
-      if (ivid == imageViewId) {
-        log.info("激活:{}", ivid);
+      if (index == i) {
         imageView.setSelected(true);
-        //修改fragment
-        viewPager2.setCurrentItem(i);
       } else {
-        log.info("不激活:{}", ivid);
         imageView.setSelected(false);
       }
     }
